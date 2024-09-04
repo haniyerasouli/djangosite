@@ -1,0 +1,136 @@
+#container{
+    /*display: inline-block;*/
+
+    /* margin-right: 10px;*/
+    display: flex;
+    flex-direction: column;
+    /*align-items: flex-end;*/
+    gap: 20px; /* فاصله بین کارت‌ها */
+    padding-right: 20px;
+}
+
+
+
+.card{
+    /*position: absolute;*/
+    /*text-align: right;*/
+    top: 30px;
+    /*left: 950px;*/
+     width: 100%;
+    max-width: 500px; /* برای اینکه کارت‌ها به اندازه مناسبی نمایش داده شوند */
+}
+
+
+#text{
+    position: absolute;
+    right: 500px;
+    top:300px;
+    margin-top: 20px; /* فاصله از بالای صفحه */
+}
+
+/*.cardmb-3{*/
+/*    display: flex;*/
+/*    position: absolute;*/
+/*    right: 500px;*/
+/*    left: 1000px;*/
+/*}*/
+
+/*.rowg-0{*/
+/*     display: flex;*/
+/*     position: absolute;*/
+/*     right: 1000px;*/
+/*}*/
+
+
+/*#container{*/
+/*    position: absolute;*/
+/*    align-items: center;*/
+
+/*    right: 1200px;*/
+/*    width: 800px ;*/
+/*    height: 100px;*/
+
+
+/*}*/
+/*.col-md-4{*/
+/*    position: absolute;*/
+/*    align-items: center;*/
+
+/*    right: 1200px;*/
+/*    width: 1000px ;*/
+/*    height: 100px;*/
+/*}*/
+
+/*#container {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    flex-direction: column;*/
+/*    align-items: flex-start; !* برای اینکه عناصر از نظر عمودی در وسط قرار نگیرند *!*/
+/*    width: 100%; !* برای اینکه کانتینر به اندازه کامل عرض صفحه باشد *!*/
+/*    left: 100px;*/
+/*}*/
+
+/*.card {*/
+/*    margin-bottom: 20px; !* برای ایجاد فاصله بین کارت‌ها *!*/
+/*    align-self: center; !* برای اینکه هر کارت از نظر افقی در وسط قرار بگیرد *!*/
+/*    transform: translateX(-1000px); !* برای اینکه کارت‌ها به سمت چپ حرکت کنند *!*/
+/*}*/
+
+
+
+.delete-card{
+    position: absolute;
+    right: 200px;
+    top: 100px;
+    background-color: pink;
+    color: white;
+    align-items: center;
+    font-family: 'Lucida Grande', Arial, sans-serif;
+    border: #e0959f;
+    border-radius: 5px;
+    width: 90px;
+}
+
+.delete-card:hover{
+    filter: brightness(1.2);
+}
+
+#image{
+    position: absolute;
+    top: 100px;
+    right: 50px;
+    display: flex;
+
+}
+
+.card-text{
+    text-align: right;
+    font-family: 'Consolas', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+    font-size: large;
+}
+
+/*#total{*/
+/*    position: absolute;*/
+/*    right: 100px;*/
+/*    top: 500px;*/
+/*}*/
+
+#total-section {
+    position: absolute;
+    right: 100px;
+    top: 100px;
+    border: 1px solid #dc818f; /* خط حاشیه */
+    padding: 10px; /* فاصله داخلی */
+    border-radius: 5px; /* گرد کردن گوشه‌ها */
+    width: fit-content; /* عرض بر اساس محتوا */
+    margin: 20px 0; /* فاصله از بالا و پایین */
+}
+
+#total {
+    position: absolute;
+    right: 100px;
+    top: 500px;
+    margin: 0; /* حذف فاصله بالا و پایین */
+    font-size: 1.2em; /* اندازه فونت */
+    color: #333; /* رنگ متن */
+}

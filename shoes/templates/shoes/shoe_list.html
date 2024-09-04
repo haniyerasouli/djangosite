@@ -1,0 +1,154 @@
+{#{% extends 'base.html' %}#}
+{#{% load static %}#}
+{#{% block tite_page %}#}
+{#	محصولات#}
+{#{% endblock %}#}
+{#{% block content_page %}#}
+{#    <link rel="stylesheet" href="{% static 'shoes/shoe_list.css' %}">#}
+{#        <p id="p">محصولات</p>#}
+{#    <br><br>#}
+{##}
+{#         {% for shoe_record in shoe_record %}#}
+{#             {% if shoe_record.is_sale %}#}
+{##}
+{##}
+{#             <div id="list">#}
+{##}
+{##}
+{#                 <div id="container">#}
+{##}
+{#                    <img id="image" src="{{ MEDIA_URL }}{{ shoe_record.photo }}">#}
+{##}
+{#                     &nbsp;&nbsp;#}
+{#                 </div>#}
+{##}
+{#                <p id="brand">{{ shoe_record.brand }}:برند</p>#}
+{#                <a id="brand" style="text-decoration-line: none" href="{{ shoe_record.slug }}">{{ shoe_record.brand }}</a>#}
+{#                  <a id="brand" style="text-decoration-line: none" href="{% url 'viewShoedetail' shoe_record.slug shoe_record.id  %}">{{ shoe_record.brand }}</a>#}
+{#                 &nbsp;&nbsp;#}
+{#                  <a id="price" style="text-decoration-line: none" href="{% url 'viewShoedetail' shoe_record.slug shoe_record.id  %}">قیمت:{{ shoe_record.price }}</a>#}
+{#                        <button type="button" class="btn btn-primary position-relative">#}
+{#                            <a href="{% url 'viewShoedetail' shoe_record.slug shoe_record.id %}">برو به صفحه محصول</a>#}
+{##}
+{#                          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">#}
+{#                            تخفیف ویژه#}
+{#                            <span class="visually-hidden">unread messages</span>#}
+{#                          </span>#}
+{##}
+{#                 {% else %}#}
+{#                 <div id="list">#}
+{##}
+{##}
+{#                 <div id="container">#}
+{##}
+{#                    <img id="image" src="{{ MEDIA_URL }}{{ shoe_record.photo }}">#}
+{##}
+{#                     &nbsp;&nbsp;#}
+{#                 </div>#}
+{##}
+{#                <p id="brand">{{ shoe_record.brand }}:برند</p>#}
+{#                <a id="brand" style="text-decoration-line: none" href="{{ shoe_record.slug }}">{{ shoe_record.brand }}</a>#}
+{#                  <a id="brand" style="text-decoration-line: none" href="{% url 'viewShoedetail' shoe_record.slug shoe_record.id  %}">{{ shoe_record.brand }}</a>#}
+{#                 &nbsp;&nbsp;#}
+{#                  <a id="price" style="text-decoration-line: none" href="{% url 'viewShoedetail' shoe_record.slug shoe_record.id  %}">قیمت:{{ shoe_record.price }}</a>#}
+{#                     <button type="button" class="btn btn-primary position-relative">#}
+{#                            <a href="{% url 'viewShoedetail' shoe_record.slug shoe_record.id %}">برو به صفحه محصول</a>#}
+{##}
+{##}
+{##}
+{#             {% endif %}#}
+{#         {% endfor %}#}
+{##}
+{##}
+{##}
+{#{% endblock %}#}
+{#{% extends 'base.html' %}#}
+{#{% load static %}#}
+{#{% block title_page %}#}
+{#    محصولات#}
+{#{% endblock %}#}
+{#{% block content_page %}#}
+{#    <link rel="stylesheet" href="{% static 'shoes/shoe_list.css' %}">#}
+{#    <p id="p">محصولات</p>#}
+{#    <br><br>#}
+{##}
+{#    {% for shoe_record in shoe_record %}#}
+{#        <div id="list">#}
+{#            <div id="container">#}
+{#                <img id="image" src="{{ MEDIA_URL }}{{ shoe_record.photo }}">#}
+{#                &nbsp;&nbsp;#}
+{#            </div>#}
+{#            <a id="brand" style="text-decoration-line: none" href="{% url 'viewShoedetail' shoe_record.slug shoe_record.id %}">{{ shoe_record.brand }}</a>#}
+{#            &nbsp;&nbsp;#}
+{#            <a id="price" style="text-decoration-line: none" href="{% url 'viewShoedetail' shoe_record.slug shoe_record.id %}">قیمت:{{ shoe_record.price }}</a>#}
+{#            {% if shoe_record.is_sale %}#}
+{#                <span id="sale" class="badge rounded-pill bg-danger">#}
+{#                    تخفیف ویژه#}
+{#                    <span class="visually-hidden">unread messages</span>#}
+{#                </span>#}
+{#                {% else %}#}
+{#                    <div id="list">#}
+{#            <div id="container">#}
+{#                <img id="image" src="{{ MEDIA_URL }}{{ shoe_record.photo }}">#}
+{#                &nbsp;&nbsp;#}
+{#            </div>#}
+{#            <a id="brand" style="text-decoration-line: none" href="{% url 'viewShoedetail' shoe_record.slug shoe_record.id %}">{{ shoe_record.brand }}</a>#}
+{#            &nbsp;&nbsp;#}
+{#            <a id="price" style="text-decoration-line: none" href="{% url 'viewShoedetail' shoe_record.slug shoe_record.id %}">قیمت:{{ shoe_record.price }}</a>#}
+{#            {% if shoe_record.is_sale %}#}
+{#                <span id="sale" class="badge rounded-pill bg-danger">#}
+{#                    تخفیف ویژه#}
+{#                    <span class="visually-hidden">unread messages</span>#}
+{#                </span>#}
+{#            {% endif %}#}
+{#    {% endfor %}#}
+{#{% endblock %}#}
+{% extends 'base.html' %}
+{% load static %}
+{% block title_page %}
+    محصولات
+{% endblock %}
+{% block content_page %}
+    <link rel="stylesheet" href="{% static 'shoes/shoe_list.css' %}">
+    <p id="p">محصولات</p>
+    <br><br>
+
+    {% for shoe_record in shoe_record %}
+        <div id="list">
+            <div id="container">
+                <img id="image" src="{{ MEDIA_URL }}{{ shoe_record.photo }}">
+                &nbsp;&nbsp;
+            </div>
+            <a id="brand" style="text-decoration-line: none" href="{% url 'viewShoedetail' shoe_record.slug shoe_record.id %}">{{ shoe_record.brand }}</a>
+            &nbsp;&nbsp;
+{#<a id="price" style="text-decoration-line: none" href="{% url 'viewShoedetail' shoe_record.slug shoe_record.id %}">قیمت:{{ shoe_record.price }}</a>#}
+         {% if shoe_record.notexist %}
+                <span id="ex" class="badge rounded-pill bg-danger">
+                    نا موجود
+                    <span class="visually-hidden">unread messages</span>
+                </span>
+
+{#            {% endif %}#}
+                {% elif shoe_record.is_sale %}
+                    <span id="sale" class="badge rounded-pill bg-danger">
+                        تخفیف ویژه
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
+                    <br>
+                     <strike><a id="price" style="text-decoration-line: none" href="{% url 'viewShoedetail' shoe_record.slug shoe_record.id %}">قیمت:{{ shoe_record.price }}</a></strike>
+                    <br>
+                     <a id="price" style="text-decoration-line: none" href="{% url 'viewShoedetail' shoe_record.slug shoe_record.id %}">قیمت:{{ shoe_record.sale_price }}</a>
+                {% else %}
+                   <a id="price" style="text-decoration-line: none" href="{% url 'viewShoedetail' shoe_record.slug shoe_record.id %}">قیمت:{{ shoe_record.price }}</a>
+            {% endif %}
+{#        {% if shoe_record.notexist %}#}
+{#                <span id="ex" class="badge rounded-pill bg-danger">#}
+{#                    نا موجود#}
+{#                    <span class="visually-hidden">unread messages</span>#}
+{#                </span>#}
+{#                {% else %}#}
+{#                   <a id="price" style="text-decoration-line: none" href="{% url 'viewShoedetail' shoe_record.slug shoe_record.id %}">قیمت:{{ shoe_record.price }}</a>#}
+{#            {% endif %}#}
+        </div>
+    {% endfor %}
+{% endblock %}

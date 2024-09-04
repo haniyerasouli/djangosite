@@ -1,0 +1,40 @@
+
+              <img src="{{ MEDIA_URL }}{{ shoe.photo }}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{ shoe.brand }}</h5>
+                  <br>
+                <p class="card-text">{{ shoe.property}}</p>
+              </div>
+              <div>
+              <ul class="list-group list-group-flush">
+
+                <li class="list-group-item">قیمت: {{ shoe.price }}تومان</li>
+                  <li class="list-group-item">جنس: {{ shoe.kind.name}}</li>
+{#                <li class="list-group-item">رنگ: {{ shoe.color }}</li>#}
+                  <li class="list-group-item"> جنسیت:{{ shoe.gender}}</li>
+
+                 <li id="discription">توضیحات:{{ shoe.discription }}</li>
+                <li id="size">
+                      <div>
+{#                  <select class="form-select_size" aria-label="Default select example" id="size">#}
+{#                        <option selected>انتخاب سایز</option>#}
+{#                        {% for size in shoe.size.all %}#}
+{#                            <option value="{{ size.id }}">{{ size.range}}</option>#}
+{#                        {% endfor %}#}
+{#                    </select>#}
+                           <select class="form-select" aria-label="Default select example" id="color">#}
+{#                        <option selected>انتخاب رنگ</option>#}
+{#                        {% for color in shoe.color.all %}#}
+{#                            <option value="{{ color.id }}">{{ color.name}}</option>#}
+{#                        {% endfor %}#}
+{#                    </select>#}
+
+
+{#                 <li id="discription">توضیحات:{{ shoe.discription }}</li>#}
+{#            </div>#}
+        {##}
+             </div>
+                </li>
+              </ul>
+
+        </div>

@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tite_page %}
+	سبد خرید
+{% endblock %}
+{% block content_page %}
+    <link rel="stylesheet" href="{% static 'carts/cart.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        {% if cart_shoes %}
+        <div id="container">
+            {% for shoe in cart_shoes %}
+{#                <br>#}
+{#                <div class="card" style="width: 18rem;">#}
+{#                    {% include 'shoes/includes/share.html' %}#}
+{#          <div class="card-body">#}
+                <div class="card mb-3" style="max-width: 500px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{ MEDIA_URL }}{{ shoe.photo }}" class="card-img-top" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ shoe.brand }}</h5>
+        <p class="card-text">رنگ:
+            <button type="button" data-index="{{ shoe.id }}" class="delete-card">حذف</button>
+              {% for key,value in colors.items %}
+              	    {% if key == shoe.id|slugify %}
+              	    	{{ value }}
+              	    {% endif %}
+              {% endfor %}</p>
+        <p class="card-text"> اندازه:
+                  {% for key,value in sizes.items %}
+                        {% if key == shoe.id|slugify %}
+                            {{ value }}
+                        {% endif %}
+                  {% endfor %}
+
+</p>
+{#       <p class="card-text">  قیمت: {{ shoe.price}}تومان  </p>#}
+      {% if shoe.notexist %}
+                <span id="ex" class="badge rounded-pill bg-danger">
+                    نا موجود
+                    <span class="visually-hidden">unread messages</span>
+                </span>
+
+{#            {% endif %}#}
+                {% elif shoe.is_sale %}
+{#                      <button type="button" value='{{ shoe.id }}' id='add_cart'>افزودن به سبد خرید</button>#}
+{#                    <span id="sale" class="badge rounded-pill bg-danger">#}
+{#                        تخفیف ویژه#}
+{#                        <span class="visually-hidden">unread messages</span>#}
+{#                    </span>#}
+
+                     <strike><p>قیمت:{{ shoe.price }}</p></strike>
+
+                    <p>قیمت: {{ shoe.sale_price }}</p>
+                {% else %}
+                    <p>قیمت: {{ shoe.price }}</p>
+            {% endif %}
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{#          <p>#}
+{#              رنگ:#}
+{#              {% for key,value in colors.items %}#}
+{#              	    {% if key == shoe.id|slugify %}#}
+{#              	    	{{ value }}#}
+{#              	    {% endif %}#}
+{#              {% endfor %}#}
+{##}
+{#          </p>#}
+{#              <p>#}
+{#                  اندازه:#}
+{#                  {% for key,value in sizes.items %}#}
+{#                        {% if key == shoe.id|slugify %}#}
+{#                            {{ value }}#}
+{#                        {% endif %}#}
+{#                  {% endfor %}#}
+{##}
+{#            </p>#}
+
+
+{#          <button type="button" data-index="{{ shoe.id }}" class="update-card">ویرایش</button>#}
+{#              <button type="button" data-index="{{ shoe.id }}" class="delete-card">حذف</button>#}
+
+        </div>
+
+          </div>
+
+
+        {% endfor %}
+            <section id="total_section">
+                 <button id="calculate_total">محاسبه مجموع قیمت</button>
+                 <div id="total_price"></div>
+            </section>
+    {% else %}
+        <h3 id="text">چرا هنوز هیچی نخریدی&#128546;</h3>
+
+
+    {% endif %}
+<img id="image" src="{% static 'shoes/images/img.png' %}">
+
+{% endblock %}
+{% block footer_refrence %}
+
+
+        <!-- Other HTML code -->
+
+
+    <script>
+        {#document.getElementById('calculate_total').addEventListener('click', function (e) {#}
+        {#    e.preventDefault();#}
+        {#    fetch('{% url 'get_cart_total' %}', {#}
+        {#        method: 'GET',#}
+        {#        headers: {#}
+        {#            'Content-Type': 'application/json',#}
+        {#            'X-CSRFToken': '{{ csrf_token }}'#}
+        {#        }#}
+        {#    })#}
+        {#    .then(response => response.json())#}
+        {#    .then(data => {#}
+        {#        document.getElementById('total_price').textContent = data.total_price;#}
+        {#    })#}
+        {#    .catch(error => console.error('Error:', error));#}
+
+
+    $(document).on('click', '.delete-card', function (e){
+        e.preventDefault();
+         var cardElement = $(this).closest('.card');
+        $.ajax({
+            type:'POST',
+            url: '{% url 'cart_delete' %}',
+            data: {
+                shoe_id: $(this).data('index'),
+                csrfmiddlewaretoken:'{{ csrf_token }}',
+                action:'post'
+            },
+              success: function(json) {
+                if (json.success) {
+                    // Remove the card element from the DOM
+                    cardElement.remove();
+                    // Update the cart quantity display
+                    document.getElementById('cart_quantity').textContent = json.cart_quantity;
+                }
+            },
+            error: function(xhr, errmsg, err) {
+                console.error(xhr.status + ": " + xhr.responseText);
+            }
+        });
+    });
+{#    document.addEventListener('DOMContentLoaded', function() {#}
+{#    const updateCartButtons = document.querySelectorAll('.update-cart');#}
+{#    updateCartButtons.forEach(button => {#}
+{#        button.addEventListener('click', function() {#}
+{#            fetch('{% url 'update_cart' %}', {#}
+{#                method: 'POST',#}
+{#                headers: {#}
+{#                    'Content-Type': 'application/x-www-form-urlencoded',#}
+{#                    'X-CSRFToken': '{{ csrf_token }}'#}
+{#                }#}
+{#            })#}
+{#            .then(response => response.json())#}
+{#            .then(data => {#}
+{#                document.getElementById('total_price').textContent = data.total_price;#}
+{#            });#}
+{#        });#}
+{#    });#}
+
+    function updateTotalPrice() {
+        fetch('{% url 'update_cart' %}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': '{{ csrf_token }}'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('total_price').textContent = data.total_price;
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const updateCartButtons = document.querySelectorAll('.update-cart');
+        updateCartButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                updateTotalPrice();
+            });
+        });
+    });
+    </script>
+{% endblock %}
+
+

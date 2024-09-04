@@ -1,0 +1,109 @@
+#add_cart{
+    position: absolute;
+    right: 400px;
+    width:150px;
+    height: 60px;
+    bottom: 20px;
+    top: 300px;
+    background-image: linear-gradient(200deg, #ffabb7, #dc4393);
+    border-radius: 6px;
+    color: #efe4db;
+    animation: buble 1.5s linear 15ms infinite;
+    font-family: 'Lucida Grande', Arial, sans-serif;
+}
+
+@keyframes bubble {
+    0%, 100% {
+        transform: scale(0.97);
+    }
+    50%{
+        transform: scale(1.07);
+    }
+
+}
+
+.card{
+    position: absolute;
+    text-align: right;
+    top: 100px;
+    right: 50px;
+}
+
+
+.card_body{
+    text-align: right;
+    font-family: 'Lucida Grande', Arial, sans-serif;
+}
+
+#discription{
+    position: absolute;
+    right:20px;
+    top:360px;
+
+}
+
+.form-select{
+    position: absolute;
+    text-align: right;
+    top: 530px;
+    width: 288px;
+
+}
+
+
+.form-select_size{
+    position: absolute;
+    text-align: right;
+    top: 490px;
+    right: 1px;
+    width: 288px;
+    border-radius: 3px;
+    border-color: #d9d1d1;
+    height: 40px;
+
+}
+
+
+#img{
+    position: absolute;
+    left: 1000px;
+    top: 100px;
+    width: 280px;
+}
+.main-image-container {
+    width: 100%;
+    max-width: 600px; /* Adjust as needed */
+}
+
+.main-image {
+    width: 100%;
+    height: auto;
+    right: 100px;
+    align-items: center;
+}
+
+.small-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.small-image {
+    width: 100px; /* Adjust as needed */
+    height: auto;
+    cursor: pointer;
+}
+
+/*#size{*/
+/*    position: absolute;*/
+/*    top: 220px;*/
+
+
+/*}*/
+
+/*#color{*/
+/*    position: absolute;*/
+/*    top: 260px;*/
+/*    right:1px;*/
+/*}*/

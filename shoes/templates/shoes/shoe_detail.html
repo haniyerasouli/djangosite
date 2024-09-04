@@ -1,0 +1,321 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tite_page %}
+	جزییات
+{% endblock %}
+{% block content_page %}
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'shoes/shoe_detail.css' %}">
+    <div class="card" style="width: 18rem;">
+{#    <img src="{{ MEDIA_URL }}{{ shoe.photo }}" class="card-img-top" alt="...">#}
+  <div class="card-body">
+  <h5 class="card-title">{{ shoe.brand }}</h5>
+    <p class="card-text">{{ shoe.property }}</p>
+     <p class="card-text">{{ shoe.discription}}</p>
+{#       <p class="card-text">{{ shoe.price}}تومان</p>#}
+        <p class="card-text">جنس: {{ shoe.kind.name}}</p>
+        {% if shoe.notexist %}
+                <span id="ex" class="badge rounded-pill bg-danger">
+                    نا موجود
+                    <span class="visually-hidden">unread messages</span>
+                </span>
+
+{#            {% endif %}#}
+                {% elif shoe.is_sale %}
+                      <button type="button" value='{{ shoe.id }}' id='add_cart'>افزودن به سبد خرید</button>
+                    <span id="sale" class="badge rounded-pill bg-danger">
+                        تخفیف ویژه
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
+                    <br>
+                     <strike><p>قیمت:{{ shoe.price }}</p></strike>
+                    <br>
+                    <p>قیمت: {{ shoe.sale_price }}</p>
+                {% else %}
+                      <button type="button" value='{{ shoe.id }}' id='add_cart'>افزودن به سبد خرید</button>
+                   <p>قیمت:{{ shoe.price }}</p>
+            {% endif %}
+
+{#     <div id="cart_quantity">0</div>#}
+
+{#         #}
+{#         {% if shoe.is_sale %}#}
+{#                <p> <strike>قیمت:{{ shoe.price }}</strike></p>#}
+{#                <br>#}
+{#                <p> قیمت:{{ shoe.price }}</p>#}
+{#                {% else %}#}
+{#                  <p> قیمت:{{ shoe.price }}</p>#}
+{#            {% endif %}#}
+          <ul>
+        <select class="form-select_size" aria-label="Default select example" id="size">
+            <option selected>انتخاب سایز</option>
+                {% for size in shoe.size.all %}
+                    <option value="{{ size.id }}">{{ size.range}}</option>
+                {% endfor %}
+        </select>
+  </ul>
+  </div>
+  <ul class="list-group list-group-flush">
+      <select class="form-select" aria-label="Default select example" id="color">
+          <option selected>انتخاب رنگ</option>
+          {% for color in shoe.color.all %}
+              <option value="{{ color.id }}">{{ color.name}}</option>
+          {% endfor %}
+      </select>
+    </ul>
+
+
+{#    <ul>#}
+{#        <select class="form-select_size" aria-label="Default select example" id="size">#}
+{#            <option selected>انتخاب سایز</option>#}
+{#                {% for size in shoe.size.all %}#}
+{#                    <option value="{{ size.id }}">{{ size.range}}</option>#}
+{#                {% endfor %}#}
+{#        </select>#}
+{#  </ul>#}
+</div>
+<style>
+        .main-image {
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+        .small-images {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .small-image {
+            width: 100px;
+            height: 100px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+
+<br>
+
+
+
+
+{#    <button type="button" value='{{ shoe.id }}' id='add_cart'>افزودن به سبد خرید</button>#}
+
+{#<img id="image" src="{% static 'shoes/images/img.png' %}">#}
+{#---------pak#}
+{# <div class="row">#}
+{#        <div class="image-container">#}
+{#            <div class="small-image">#}
+{#                {% for image in shoe.images.all %}#}
+{#                    <img src="{{ MEDIA_URL }}{{ image.image }}" class="featured-image-1" alt="">#}
+{#                {% endfor %}#}
+{#            </div>#}
+{#            <div class="big-image">#}
+{#                <img src="{{ MEDIA_URL }}{{ shoe.images.first.image }}" class="big-image-1" alt="">#}
+{#            </div>#}
+        <div class="shoes-list">
+{#        {% for shoe in shoes %}#}
+{#            <div class="shoe-item">#}
+{#                <h2>{{ shoe.brand }} - {{ shoe.property }}</h2>#}
+{#                <img src="{{ shoe.photo.url }}" alt="{{ shoe.brand }}">#}
+{#                <a href="{% url 'shoe_detail' shoe.slug %}">View Details</a>#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#    </div>#}
+{#<div class="image-container">#}
+{#        {% if shoe.photo %}#}
+{#            <img src="{{ shoe.photo.url }}" alt="{{ shoe.brand }}" class="main-image">#}
+{#        {% else %}#}
+{#            <p>No photo available</p>#}
+{#        {% endif %}#}
+{#        <div class="small-images">#}
+{#            {% for image in images %}#}
+{#                <img src="{{ image.image.url }}" alt="{{ shoe.brand }}" class="small-image">#}
+{#            {% empty %}#}
+{#                <p>No additional images available</p>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#        </div>#}
+            <div class="image-container">
+    <div class="main-image-container">
+        {% if shoe.photo %}
+            <img src="{{ shoe.photo.url }}" alt="{{ shoe.brand }}" class="main-image" id="main-image">
+        {% else %}
+            <p>No photo available</p>
+        {% endif %}
+    </div>
+    <div class="small-images">
+{#        {% if shoe.photo %}#}
+{#            <img src="{{ shoe.photo.url }}" alt="{{ shoe.brand }}" class="small-image" onclick="changeImage('{{ shoe.photo.url }}')">#}
+{#        {% endif %}#}
+{#        {% for image in images %}#}
+{#            <img src="{{ image.image.url }}" alt="{{ shoe.brand }}" class="small-image" onclick="changeImage('{{ image.image.url }}')">#}
+{#        {% empty %}#}
+{#            <!-- <p>No additional images available</p> -->#}
+{#        {% endfor %}#}
+        <div class="small-images">
+               {% if shoe.photo %}
+        <img src="{{ shoe.photo.url }}" alt="{{ shoe.brand }}" class="small-image" onclick="changeImage('{{ shoe.photo.url }}')">
+    {% endif %}
+    {% for image in images %}
+        {% if image.image %}
+            <img src="{{ image.image.url }}" alt="{{ shoe.brand }}" class="small-image" onclick="changeImage('{{ image.image.url }}')">
+        {% else %}
+            <p>تصویر موجود نیست</p>
+        {% endif %}
+    {% empty %}
+        <p>تصاویر اضافی موجود نیست</p>
+    {% endfor %}
+        </div>
+    </div>
+</div>
+{#        <div class="content">#}
+{#            <h3>کفش جدید نایک ایرمکس</h3>#}
+{#            <div class="stars">#}
+{#                <i class="fas fa-star"></i>#}
+{#                <i class="fas fa-star"></i>#}
+{#                <i class="fas fa-star"></i>#}
+{#                <i class="fas fa-star"></i>#}
+{#                <i class="far fa-star"></i>#}
+{#            </div>#}
+{#            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است </p>#}
+{#            <div class="price">$80.99 <span>$120.99</span></div>#}
+{#            <a href="#" class="btn">افزودن به سبد خرید</a>#}
+{#        </div>#}
+    </div>
+
+
+            <script>
+    {#document.getElementById('add_cart').addEventListener('click', function (e) {#}
+    {#        e.preventDefault();#}
+    {#        const shoeId = this.value;#}
+    {#        const colorId = document.getElementById('color').value;#}
+    {#        const quantity = prompt('لطفا تعداد را وارد کنید:');#}
+    {##}
+    {#        if (quantity) {#}
+    {#            fetch('{% url 'check_inventory' %}', {#}
+    {#                method: 'POST',#}
+    {#                headers: {#}
+    {#                    'Content-Type': 'application/x-www-form-urlencoded',#}
+    {#                    'X-CSRFToken': '{{ csrf_token }}'#}
+    {#                },#}
+    {#                body: `shoe_id=${shoeId}&color_id=${colorId}&quantity=${quantity}`#}
+    {#            })#}
+    {#            .then(response => response.json())#}
+    {#            .then(data => {#}
+    {#                if (data.status === 'success') {#}
+    {#                    alert(data.message);#}
+    {#                    // Proceed with adding to cart#}
+    {#                } else {#}
+    {#                    alert(data.message);#}
+    {#                }#}
+    {#            })#}
+    {#            .catch(error => console.error('Error:', error));#}
+    {#        }#}
+    {#    });#}
+    {#$(document).on('click', '#add_cart', function (e){#}
+    {#    e.preventDefault();#}
+    {#    $.ajax({#}
+    {#        type:'POST',#}
+    {#        url: '{% url 'cart_add' %}',#}
+    {#        data: {#}
+    {#            shoe_id: $('#add_cart').val(),#}
+    {#            csrfmiddlewaretoken:'{{ csrf_token }}',#}
+    {#            action:'post'#}
+    {#        },#}
+    {#         data: {#}
+    {#            shoe_id: $('#add_cart').val(),#}
+    {#            shoe_color:$('#color option:selected').text(),#}
+    {#            shoe_size:$('#size option:selected').text(),#}
+    {#            csrfmiddlewaretoken:'{{ csrf_token }}',#}
+    {#            action:'post'#}
+    {#        },#}
+    {#        succsess: function(json){#}
+    {#            console.log(json)#}
+    {#            document.getElementById('cart_quantity').textContent=json.qty#}
+    {##}
+    {#        },#}
+    {##}
+    {#        error:function(xhr, errmsg, err) {#}
+    {##}
+    {#            console.error(xhr.status + ": " + xhr.responseText);#}
+    {##}
+    {#        }#}
+    {##}
+    {#  })#}
+{#    {% block footer_refrence %}#}
+{##}
+{#    {% endblock %}#}
+
+    function changeImage(newImageUrl) {
+        const mainImage = document.getElementById('main-image');
+        const currentImageUrl = mainImage.src;
+        mainImage.src = newImageUrl;
+
+        // Find the small image that was clicked and change its src to the current main image
+        const smallImages = document.querySelectorAll('.small-image');
+        smallImages.forEach(img => {
+            if (img.src === newImageUrl) {
+                img.src = currentImageUrl;
+            }
+        });
+    }
+
+     document.getElementById('add_cart').addEventListener('click', function (e) {
+            e.preventDefault();
+            const shoeId = this.value;
+            const colorId = document.getElementById('color').value;
+            const sizeId = document.getElementById('size').value;
+            const quantity = prompt('لطفا تعداد را وارد کنید:');
+
+            if (quantity) {
+                fetch('{% url 'check_inventory' %}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: `shoe_id=${shoeId}&color_id=${colorId}&size_id=${sizeId}&quantity=${quantity}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        alert(data.message);
+                        addToCart(shoeId, colorId, sizeId, quantity);
+                    } else {
+                        alert(data.message);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        });
+
+        function addToCart(shoeId, colorId, sizeId, quantity) {
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'cart_add' %}',
+                data: {
+                    shoe_id: shoeId,
+                    shoe_color: $('#color option:selected').text(),
+                    shoe_size: $('#size option:selected').text(),
+                    quantity: quantity,
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                    action: 'post'
+                },
+                success: function (json) {
+                    console.log(json);
+                    document.getElementById('cart_quantity').textContent = json.qty;
+                },
+                error: function (xhr, errmsg, err) {
+                    console.error(xhr.status + ": " + xhr.responseText);
+                }
+            });
+        }
+
+
+
+
+
+
+
+    </script>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block tite_page %}
+	ورود
+{% endblock %}
+{% block content_page %}
+    <link rel="stylesheet" href="{% static 'accounts/login.css' %}">
+	    <form id="form" method="post">
+        {% csrf_token %}
+        {{ form_login.as_p }}
+            <button id="button"><a style="text-decoration-line: none" href="{% url 'viewShoe' %}">ورود</a></button>
+
+
+        </form>
+        <br>
+        <br>
+        <button id="button2"><a style="text-decoration-line: none" href="{% url 'ViewRegister' %}">هنوز عضو نشدم</a></button>
+        <button id="button3"><a style="text-decoration-line: none" href="{% url 'ViewChangePassword' %}">میخوام پسوردم رو تغییر بدم</a></button>
+        <button id="button4"><a style="text-decoration-line: none" href="{% url 'reset_password_form' %}">پسوردمو یادم رفته</a></button>
+{% endblock %}
