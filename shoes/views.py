@@ -16,6 +16,9 @@ from shoes.models import Shoe, ShoeColorInventory, ShoeSizeInventory, ShoeImage
 
 # Create your views here.
 #viewshoe برای نمایش محصولات
+
+# def viewhome(request):
+#     return render(request,'home_page.html')
 def viewShoe(request):
     shoe_record=Shoe.objects.all()
     return render(request,'shoes/index.html',{'shoe_record':shoe_record})
