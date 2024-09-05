@@ -30,7 +30,7 @@
                     </span>
                     <br>
                      <strike><p>قیمت:{{ shoe.price }}</p></strike>
-                    <br>
+{#                    <br>#}
                     <p>قیمت: {{ shoe.sale_price }}</p>
                 {% else %}
                       <button type="button" value='{{ shoe.id }}' id='add_cart'>افزودن به سبد خرید</button>
@@ -242,9 +242,9 @@
     {#        }#}
     {##}
     {#  })#}
-{#    {% block footer_refrence %}#}
-{##}
-{#    {% endblock %}#}
+    {% block footer_refrence %}
+
+    {% endblock %}
 
     function changeImage(newImageUrl) {
         const mainImage = document.getElementById('main-image');

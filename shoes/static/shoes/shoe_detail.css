@@ -95,15 +95,15 @@
     cursor: pointer;
 }
 
-/*#size{*/
-/*    position: absolute;*/
-/*    top: 220px;*/
+#size{
+    position: absolute;
+    top: 260px;
 
 
-/*}*/
+}
 
-/*#color{*/
-/*    position: absolute;*/
-/*    top: 260px;*/
-/*    right:1px;*/
-/*}*/
+#color{
+    position: absolute;
+    top: 300px;
+    right:1px;
+}
